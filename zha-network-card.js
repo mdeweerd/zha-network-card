@@ -171,7 +171,9 @@ class DataRowZHA {
         });
       });
     }
-    this.hidden = this.data.some((data) => data === null);
+    if (this.data)
+      this.hidden = this.data.some((data) => data === null);
+    
     return this;
   }
 }
