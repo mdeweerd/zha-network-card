@@ -157,18 +157,20 @@ class DataRowZHA {
   render_data(col_cfgs) {
     // apply passed "modify" configuration setting by using eval()
     // assuming the data is available inside the function as "x"
-    this.data = this.raw_data.map((raw, idx) => {
-      // finally, put it all together
-      let x = raw;
-      let cfg = col_cfgs[idx];
-      return new Object({
-        content: cfg.modify ? eval(cfg.modify) : x ? x : "N/A",
-        pre: cfg.prefix || "",
-        suf: cfg.suffix || "",
-        css: cfg.align || "left",
-        hide: cfg.hidden,
+    if (this.raw_data) {
+      this.data = this.raw_data.map((raw, idx) => {
+        // finally, put it all together
+        let x = raw;
+        let cfg = col_cfgs[idx];
+        return new Object({
+          content: cfg.modify ? eval(cfg.modify) : x ? x : "N/A",
+          pre: cfg.prefix || "",
+          suf: cfg.suffix || "",
+          css: cfg.align || "left",
+          hide: cfg.hidden,
+        });
       });
-    });
+    }
     this.hidden = this.data.some((data) => data === null);
     return this;
   }
