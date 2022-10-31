@@ -357,7 +357,7 @@ class ZHANetworkCard extends HTMLElement {
               return error.message
             });
           } else {
-            console.log("DEBUG: %s", JSON.stringify(error))
+            // console.log("DEBUG: %s", JSON.stringify(error)) // Error unknown here.
             e.device.sw_build_id = "N/A"
           }
           e.get_raw_data(config.columns)
