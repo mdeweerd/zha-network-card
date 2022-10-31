@@ -326,7 +326,7 @@ class ZHANetworkCard extends HTMLElement {
         const raw_rows = devices.map(
           (e) => new DataRowZHA({ attributes: e }, config.strict)
         );
-        const read_sw_build_id = config.columns.filter((col) => col.prop == "sw_build_id");
+        const read_sw_build_id = config.columns.filter((col) => col.prop == "sw_build_id").length != 0;
         await Promise.allSettled(raw_rows.map(async (e) => {
           if (read_sw_build_id && e.device.attributes.available) {
             // retrieving cluster attributes requires additional ws calls
