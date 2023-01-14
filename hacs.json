@@ -1,5 +1,6 @@
 {
     "name": "ZHA Network Card",
     "content_in_root": true,
+    "filename": "zha-network-card.js",
     "render_readme": true
 }

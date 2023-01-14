@@ -1,0 +1,25 @@
+---
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release_zip_file:
+    name: Prepare release asset
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Create zip
+        run: |
+          zip -r zha-network-card.zip *.js *.json README.md
+      - name: Upload zip to release
+        uses: svenstaro/upload-release-action@v1-release
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./zha-network-card.zip
+          asset_name: zha-network-card.zip
+          tag: ${{ github.ref }}
+          overwrite: true
