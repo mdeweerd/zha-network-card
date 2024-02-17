@@ -4,7 +4,7 @@ exclude: ^(\.[^/]*cache/.*|.*/_user.py)$
 repos:
   - repo: https://github.com/executablebooks/mdformat
     # Do this before other tools "fixing" the line endings
-    rev: 0.7.16
+    rev: 0.7.17
     hooks:
       - id: mdformat
         name: Format Markdown
@@ -21,8 +21,9 @@ repos:
           - mdformat-black
           - mdformat-web
           - mdformat-gfm
+          - setuptools
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: no-commit-to-branch
         args: [--branch, main]
@@ -43,7 +44,7 @@ repos:
       - id: check-case-conflict
       # - id: check-toml
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.28.0
+    rev: v1.35.1
     hooks:
       - id: yamllint
         args:
@@ -54,13 +55,15 @@ repos:
     rev: v6.2.1
     hooks:
       - id: beautysh
+        additional_dependencies:
+          - setuptools
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.2
+    rev: v2.2.6
     hooks:
       - id: codespell
         args:
           # - --builtin=clear,rare,informal,usage,code,names,en-GB_to_en-US
-          - --builtin=clear,rare,informal,usage,code,names
+          - --builtin=clear,rare,informal,usage,names,en-GB_to_en-US
           - --ignore-words-list=hass,master
           - --skip="./.*"
           - --quiet-level=2
